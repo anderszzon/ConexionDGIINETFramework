@@ -83,9 +83,15 @@ namespace ConexionDGII
             }
         }
 
-        public static async Task ObtenerSemilla()
+        public static string ObtenerTokenSync()
         {
-            string url = "https://ecf.dgii.gov.do/testecf/autenticacion/api/Autenticacion/Semilla";
+            return ObtenerToken().Result; // Ejecuta la tarea y obtiene el resultado inmediatamente
+        }
+
+
+        public static async Task ObtenerSemilla(string url)
+        {
+            //string url = "https://ecf.dgii.gov.do/testecf/autenticacion/api/Autenticacion/Semilla";
             string filePath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\semilla.xml"; // Ruta donde guardar el archivo
 
             using (HttpClient client = new HttpClient())
@@ -112,12 +118,12 @@ namespace ConexionDGII
 
 
 
-        public static async Task FirmarSemilla()
+        public static async Task FirmarSemilla(string passCert)
         {
             string xmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\semilla.xml";  // Ruta donde tienes tu semilla
             string signedXmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\semillaFirmada.xml"; // Archivo firmado
             string pathCert = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\20250130-2113054-YAD25P5MJ.p12"; // Ruta de tu certificado
-            string passCert = "LD271167"; // Contraseña del certificado
+            //string passCert = "LD271167"; // Contraseña del certificado
 
             try
             {
