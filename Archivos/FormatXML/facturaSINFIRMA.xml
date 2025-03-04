@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ECF>
+    <Encabezado>
+        <Version>1.0</Version>
+        <IdDoc>
+            <TipoeCF>31</TipoeCF>
+            <eNCF>E310005000201</eNCF>
+            <FechaVencimientoSecuencia>31-12-2025</FechaVencimientoSecuencia>
+            <IndicadorEnvioDiferido>1</IndicadorEnvioDiferido>
+            <IndicadorMontoGravado>0</IndicadorMontoGravado>
+            <TipoIngresos>05</TipoIngresos>
+            <TipoPago>2</TipoPago>
+            <FechaLimitePago>07-08-2023</FechaLimitePago>
+            <TotalPaginas>1</TotalPaginas>
+        </IdDoc>
+        <Emisor>
+            <RNCEmisor>130862346</RNCEmisor>
+            <RazonSocialEmisor>IT SOLUCLICK SRL</RazonSocialEmisor>
+            <DireccionEmisor>DireccionEmisor1</DireccionEmisor>
+            <FechaEmision>14-07-2023</FechaEmision>
+        </Emisor>
+        <Comprador>
+            <RNCComprador>131880738</RNCComprador>
+            <RazonSocialComprador>DGII</RazonSocialComprador>
+        </Comprador>
+        <Totales>
+            <MontoGravadoTotal>540</MontoGravadoTotal>
+            <MontoGravadoI1>540</MontoGravadoI1>
+            <MontoExento>0</MontoExento>
+            <ITBIS1>18</ITBIS1>
+            <TotalITBIS>97.2</TotalITBIS>
+            <TotalITBIS1>97.2</TotalITBIS1>
+            <MontoTotal>637.2</MontoTotal>
+            <MontoNoFacturable>0</MontoNoFacturable>
+        </Totales>
+    </Encabezado>
+    <DetallesItems>
+        <Item>
+            <NumeroLinea>1</NumeroLinea>
+            <IndicadorFacturacion>1</IndicadorFacturacion>
+            <NombreItem>Producto 1</NombreItem>
+            <IndicadorBienoServicio>1</IndicadorBienoServicio>
+            <CantidadItem>24</CantidadItem>
+            <UnidadMedida>43</UnidadMedida>
+            <PrecioUnitarioItem>25</PrecioUnitarioItem>
+            <DescuentoMonto>60</DescuentoMonto>
+            <TablaSubDescuento>
+                <SubDescuento>
+                    <TipoSubDescuento>%</TipoSubDescuento>
+                    <SubDescuentoPorcentaje>10</SubDescuentoPorcentaje>
+                    <MontoSubDescuento>60</MontoSubDescuento>
+                </SubDescuento>
+            </TablaSubDescuento>
+            <MontoItem>540</MontoItem>
+        </Item>
+    </DetallesItems>
+    <Paginacion>
+        <Pagina>
+            <PaginaNo>1</PaginaNo>
+            <NoLineaDesde>1</NoLineaDesde>
+            <NoLineaHasta>1</NoLineaHasta>
+            <SubtotalMontoGravadoPagina>540</SubtotalMontoGravadoPagina>
+            <SubtotalMontoGravado1Pagina>540</SubtotalMontoGravado1Pagina>
+            <SubtotalExentoPagina>0</SubtotalExentoPagina>
+            <SubtotalItbisPagina>97.2</SubtotalItbisPagina>
+            <SubtotalItbis1Pagina>97.2</SubtotalItbis1Pagina>
+            <MontoSubtotalPagina>637.2</MontoSubtotalPagina>
+            <SubtotalMontoNoFacturablePagina>0</SubtotalMontoNoFacturablePagina>
+        </Pagina>
+    </Paginacion>
+    <FechaHoraFirma>15-07-2023 05:07:00</FechaHoraFirma>
+</ECF>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ECF>
+  <Encabezado>
+    <Version>1.0</Version>
+    <IdDoc>
+      <TipoeCF>31</TipoeCF>
+      <eNCF>E310000000001</eNCF>
+      <FechaVencimientoSecuencia>31-12-2025</FechaVencimientoSecuencia>
+      <IndicadorEnvioDiferido>1</IndicadorEnvioDiferido>
+      <IndicadorMontoGravado>0</IndicadorMontoGravado>
+      <TipoIngresos>01</TipoIngresos>
+      <TipoPago>1</TipoPago>
+      <FechaLimitePago>07-08-2023</FechaLimitePago>
+      <TotalPaginas>1</TotalPaginas>
+    </IdDoc>
+    <Emisor>
+      <RNCEmisor>130322791</RNCEmisor>
+      <RazonSocialEmisor>DOCUMENTOS ELECTRONICOS DE 02</RazonSocialEmisor>
+      <DireccionEmisor>AVE. ISABEL AGUIAR NO. 269, ZONA INDUSTRIAL DE HERRERA</DireccionEmisor>
+      <FechaEmision>01-04-2020</FechaEmision>
+    </Emisor>
+    <Comprador>
+      <RNCComprador>131880681</RNCComprador>
+      <RazonSocialComprador>DOCUMENTOS ELECTRONICOS DE 03</RazonSocialComprador>
+    </Comprador>
+    <Totales>
+      <MontoGravadoTotal>6000</MontoGravadoTotal>
+      <MontoGravadoI1>6000</MontoGravadoI1>
+      <MontoExento>0</MontoExento>
+      <ITBIS1>18</ITBIS1>
+      <TotalITBIS>1080</TotalITBIS>
+      <TotalITBIS1>1080</TotalITBIS1>
+      <MontoTotal>7080</MontoTotal>
+      <MontoNoFacturable>0</MontoNoFacturable>
+    </Totales>
+  </Encabezado>
+  <DetallesItems>
+    <Item>
+      <NumeroLinea>1</NumeroLinea>
+      <IndicadorFacturacion>1</IndicadorFacturacion>
+      <NombreItem>ASW DTU</NombreItem>
+      <IndicadorBienoServicio>1</IndicadorBienoServicio>
+      <CantidadItem>15</CantidadItem>
+      <UnidadMedida>31</UnidadMedida>
+      <PrecioUnitarioItem>400</PrecioUnitarioItem>
+      <DescuentoMonto>0</DescuentoMonto>
+      <MontoItem>6000</MontoItem>
+    </Item>
+  </DetallesItems>
+  <Paginacion>
+    <Pagina>
+      <PaginaNo>1</PaginaNo>
+      <NoLineaDesde>1</NoLineaDesde>
+      <NoLineaHasta>1</NoLineaHasta>
+      <SubtotalMontoGravadoPagina>540</SubtotalMontoGravadoPagina>
+      <SubtotalMontoGravado1Pagina>540</SubtotalMontoGravado1Pagina>
+      <SubtotalExentoPagina>0</SubtotalExentoPagina>
+      <SubtotalItbisPagina>97.2</SubtotalItbisPagina>
+      <SubtotalItbis1Pagina>97.2</SubtotalItbis1Pagina>
+      <MontoSubtotalPagina>637.2</MontoSubtotalPagina>
+      <SubtotalMontoNoFacturablePagina>0</SubtotalMontoNoFacturablePagina>
+    </Pagina>
+  </Paginacion>
+  <FechaHoraFirma>15-07-2023 05:07:00</FechaHoraFirma>
+</ECF>
