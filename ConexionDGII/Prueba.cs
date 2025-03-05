@@ -74,8 +74,8 @@ namespace ConexionDGII
             string signedXmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\semillaFirmada.xml"; // Archivo firmado
             string pathCert = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\20250130-2113054-YAD25P5MJ.p12"; // Ruta de tu certificado
 
-            string jsonPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\facturajson31.json"; // Ruta del JSON
-            string filePath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\facturajson31.xml"; // Ruta donde guardar el archivo
+            string jsonPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\invoice.json"; // Ruta del JSON
+            string filePath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\invoice.xml"; // Ruta donde guardar el archivo
 
             try
             {
@@ -137,7 +137,7 @@ namespace ConexionDGII
 
         public static async Task<string> FirmarFactura(string passCert)
         {
-            string xmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\facturajson31.xml";  // Ruta donde tienes tu semilla
+            string xmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\invoice.xml";  // Ruta donde tienes tu semilla
             string signedXmlPath = $"C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\{_RNCEmisorGlobal}{_eNCFGlobal}.xml"; // Archivo firmado
             string pathCert = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\20250130-2113054-YAD25P5MJ.p12"; // Ruta de tu certificado
 
