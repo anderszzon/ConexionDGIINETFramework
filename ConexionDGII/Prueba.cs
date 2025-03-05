@@ -22,6 +22,8 @@ namespace ConexionDGII
         private static readonly HttpClient _httpClient = new HttpClient();
         private static string _tokenGlobal;
         private static string _trackIdGlobal;
+        private static string _eNCFGlobal;
+        private static string _RNCEmisorGlobal;
 
         private static readonly string tenantId = "Imocom.com.co";
         private static readonly string clientId = "c0c96a54-4c1a-4fbc-846b-11926cc304aa";
@@ -93,13 +95,15 @@ namespace ConexionDGII
                 xmlDoc.Save(signedXmlPath);
                 Console.WriteLine("XML firmado y guardado en: " + signedXmlPath);
 
-                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 
                 // Leer el archivo JSON
                 string jsonContent = File.ReadAllText(jsonPath);
 
-                // Convertir JSON a XML
                 JObject jsonObj = JObject.Parse(jsonContent); // Convertir JSON a JObject
+
+                _eNCFGlobal = jsonObj["ECF"]["Encabezado"]["IdDoc"]["eNCF"]?.ToString();
+                _RNCEmisorGlobal = jsonObj["ECF"]["Encabezado"]["Emisor"]["RNCEmisor"]?.ToString();
 
                 XmlDocument xmlDocument = JsonConvert.DeserializeXmlNode(jsonContent);
 
@@ -134,7 +138,7 @@ namespace ConexionDGII
         public static async Task<string> FirmarFactura(string passCert)
         {
             string xmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\facturajson31.xml";  // Ruta donde tienes tu semilla
-            string signedXmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\130322791E310000000001.xml"; // Archivo firmado
+            string signedXmlPath = $"C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\{_RNCEmisorGlobal}{_eNCFGlobal}.xml"; // Archivo firmado
             string pathCert = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\20250130-2113054-YAD25P5MJ.p12"; // Ruta de tu certificado
 
             string invoice;
@@ -339,7 +343,7 @@ namespace ConexionDGII
         public static async Task<string> EnviarFacturaElectronica(string urlRecepcionFactura, string urlConsultaFactura)
         {
 
-            string xmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\130322791E310000000001.xml"; // Ruta del XML
+            string xmlPath = $"C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\{_RNCEmisorGlobal}{_eNCFGlobal}.xml"; // Ruta del XML
 
             try
             {
