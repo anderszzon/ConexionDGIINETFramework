@@ -61,7 +61,7 @@ namespace ConexionDGII
                 else
                 {
                     Console.WriteLine($"Error al obtener el XML. Código: {response.StatusCode}");
-                    return $"Error: {response.StatusCode} - {responseBody}"; // ✅ Devuelve error
+                    return $"Error: {response.StatusCode} - {responseBody}"; 
                 }
             }
         }
@@ -134,11 +134,10 @@ namespace ConexionDGII
         public static async Task<string> FirmarFactura(string passCert)
         {
             string xmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\facturajson31.xml";  // Ruta donde tienes tu semilla
-            string signedXmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\facturajson31Firmada.xml"; // Archivo firmado
+            string signedXmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\130322791E310000000001.xml"; // Archivo firmado
             string pathCert = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\20250130-2113054-YAD25P5MJ.p12"; // Ruta de tu certificado
 
             string invoice;
-            //string passCert = "LD271167"; // Contraseña del certificado
 
             try
             {
@@ -340,7 +339,7 @@ namespace ConexionDGII
         public static async Task<string> EnviarFacturaElectronica(string urlRecepcionFactura, string urlConsultaFactura)
         {
 
-            string xmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\facturajson31Firmada.xml"; // Ruta del XML
+            string xmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\130322791E310000000001.xml"; // Ruta del XML
 
             try
             {
