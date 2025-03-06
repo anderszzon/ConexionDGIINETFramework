@@ -3,27 +3,18 @@
   <Encabezado>
     <Version>1.0</Version>
     <IdDoc>
-      <TipoeCF>31</TipoeCF>
-      <eNCF>E310000000005</eNCF>
-      <FechaVencimientoSecuencia>31-12-2025</FechaVencimientoSecuencia>
-      <IndicadorEnvioDiferido>1</IndicadorEnvioDiferido>
-      <IndicadorMontoGravado>0</IndicadorMontoGravado>
+      <TipoeCF>32</TipoeCF>
+      <eNCF>E320000000001</eNCF>
       <TipoIngresos>01</TipoIngresos>
       <TipoPago>1</TipoPago>
-      <TablaFormasPago>
-        <FormaDePago>
-          <FormaPago>1</FormaPago>
-          <MontoPago>45253.00</MontoPago>
-        </FormaDePago>
-      </TablaFormasPago>
     </IdDoc>
     <Emisor>
       <RNCEmisor>130322791</RNCEmisor>
       <RazonSocialEmisor>DOCUMENTOS ELECTRONICOS DE 02</RazonSocialEmisor>
       <NombreComercial>DOCUMENTOS ELECTRONICOS DE 02</NombreComercial>
       <DireccionEmisor>AVE. ISABEL AGUIAR NO. 269, ZONA INDUSTRIAL DE HERRERA</DireccionEmisor>
-      <Municipio>010100</Municipio>
-      <Provincia>010000</Provincia>
+      <Municipio>320301</Municipio>
+      <Provincia>320000</Provincia>
       <CorreoEmisor>DOCUMENTOSELECTRONICOSDE0612345678969789+9000000000000000000000000000001@123.COM</CorreoEmisor>
       <WebSite>www.facturaelectronica.com</WebSite>
       <CodigoVendedor>AA0000000100000000010000000002000000000300000000050000000006</CodigoVendedor>
@@ -45,60 +36,25 @@
       <NumeroOrdenCompra>4500352238</NumeroOrdenCompra>
       <CodigoInternoComprador>10633440</CodigoInternoComprador>
     </Comprador>
+    <InformacionesAdicionales>
+      <NumeroContenedor>8019289</NumeroContenedor>
+      <NumeroReferencia>1447</NumeroReferencia>
+    </InformacionesAdicionales>
     <Totales>
-      <MontoGravadoTotal>38350.00</MontoGravadoTotal>
-      <MontoGravadoI1>38350.00</MontoGravadoI1>
-      <ITBIS1>18</ITBIS1>
-      <TotalITBIS>6903.00</TotalITBIS>
-      <TotalITBIS1>6903.00</TotalITBIS1>
-      <MontoTotal>45253.00</MontoTotal>
+      <MontoExento>300000.00</MontoExento>
+      <MontoTotal>300000.00</MontoTotal>
     </Totales>
   </Encabezado>
   <DetallesItems>
     <Item>
       <NumeroLinea>1</NumeroLinea>
-      <IndicadorFacturacion>1</IndicadorFacturacion>
-      <NombreItem>Servicio domiciliario</NombreItem>
-      <IndicadorBienoServicio>2</IndicadorBienoServicio>
-      <CantidadItem>5.00</CantidadItem>
-      <UnidadMedida>43</UnidadMedida>
-      <PrecioUnitarioItem>2000.00</PrecioUnitarioItem>
-      <DescuentoMonto>1000.00</DescuentoMonto>
-      <TablaSubDescuento>
-        <SubDescuento>
-          <TipoSubDescuento>$</TipoSubDescuento>
-          <MontoSubDescuento>500.00</MontoSubDescuento>
-        </SubDescuento>
-        <SubDescuento>
-          <TipoSubDescuento>$</TipoSubDescuento>
-          <MontoSubDescuento>500.00</MontoSubDescuento>
-        </SubDescuento>
-      </TablaSubDescuento>
-      <MontoItem>9000.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>2</NumeroLinea>
-      <IndicadorFacturacion>1</IndicadorFacturacion>
-      <NombreItem>Servicio presencial</NombreItem>
+      <IndicadorFacturacion>4</IndicadorFacturacion>
+      <NombreItem>LECHE</NombreItem>
       <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>10.00</CantidadItem>
-      <UnidadMedida>43</UnidadMedida>
-      <PrecioUnitarioItem>3000.00</PrecioUnitarioItem>
-      <DescuentoMonto>700.00</DescuentoMonto>
-      <TablaSubDescuento>
-        <SubDescuento>
-          <TipoSubDescuento>$</TipoSubDescuento>
-          <MontoSubDescuento>700.00</MontoSubDescuento>
-        </SubDescuento>
-      </TablaSubDescuento>
-      <RecargoMonto>50.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>50.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>29350.00</MontoItem>
+      <CantidadItem>7500.00</CantidadItem>
+      <UnidadMedida>47</UnidadMedida>
+      <PrecioUnitarioItem>40.00</PrecioUnitarioItem>
+      <MontoItem>300000.00</MontoItem>
     </Item>
   </DetallesItems>
   <FechaHoraFirma>01-03-2025 05:07:00</FechaHoraFirma>
