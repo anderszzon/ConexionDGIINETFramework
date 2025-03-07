@@ -3,26 +3,32 @@
   <Encabezado>
     <Version>1.0</Version>
     <IdDoc>
-      <TipoeCF>32</TipoeCF>
-      <eNCF>E320000000002</eNCF>
-      <IndicadorMontoGravado>0</IndicadorMontoGravado>
+      <TipoeCF>33</TipoeCF>
+      <eNCF>E330000000001</eNCF>
+      <FechaVencimientoSecuencia>31-12-2025</FechaVencimientoSecuencia>
       <TipoIngresos>01</TipoIngresos>
       <TipoPago>1</TipoPago>
+      <TablaFormasPago>
+        <FormaDePago>
+          <FormaPago>1</FormaPago>
+          <MontoPago>400000.00</MontoPago>
+        </FormaDePago>
+      </TablaFormasPago>
     </IdDoc>
     <Emisor>
       <RNCEmisor>130322791</RNCEmisor>
       <RazonSocialEmisor>DOCUMENTOS ELECTRONICOS DE 02</RazonSocialEmisor>
       <NombreComercial>DOCUMENTOS ELECTRONICOS DE 02</NombreComercial>
       <DireccionEmisor>AVE. ISABEL AGUIAR NO. 269, ZONA INDUSTRIAL DE HERRERA</DireccionEmisor>
-      <Municipio>320301</Municipio>
-      <Provincia>320000</Provincia>
+      <Municipio>010100</Municipio>
+      <Provincia>010000</Provincia>
       <CorreoEmisor>DOCUMENTOSELECTRONICOSDE0612345678969789+9000000000000000000000000000001@123.COM</CorreoEmisor>
       <WebSite>www.facturaelectronica.com</WebSite>
       <CodigoVendedor>AA0000000100000000010000000002000000000300000000050000000006</CodigoVendedor>
       <NumeroFacturaInterna>123456789016</NumeroFacturaInterna>
       <NumeroPedidoInterno>123456789016</NumeroPedidoInterno>
       <ZonaVenta>NORTE</ZonaVenta>
-      <FechaEmision>01-04-2020</FechaEmision>
+      <FechaEmision>02-04-2020</FechaEmision>
     </Emisor>
     <Comprador>
       <RNCComprador>131880681</RNCComprador>
@@ -37,306 +43,31 @@
       <NumeroOrdenCompra>4500352238</NumeroOrdenCompra>
       <CodigoInternoComprador>10633440</CodigoInternoComprador>
     </Comprador>
+    <InformacionesAdicionales>
+      <NumeroContenedor>8019289</NumeroContenedor>
+      <NumeroReferencia>1447</NumeroReferencia>
+    </InformacionesAdicionales>
     <Totales>
-      <MontoGravadoTotal>152800.00</MontoGravadoTotal>
-      <MontoGravadoI1>27625.00</MontoGravadoI1>
-      <MontoGravadoI2>125175.00</MontoGravadoI2>
-      <MontoExento>82750.00</MontoExento>
-      <ITBIS1>18</ITBIS1>
-      <ITBIS2>16</ITBIS2>
-      <TotalITBIS>25000.50</TotalITBIS>
-      <TotalITBIS1>4972.50</TotalITBIS1>
-      <TotalITBIS2>20028.00</TotalITBIS2>
-      <MontoTotal>260550.50</MontoTotal>
-      <ValorPagar>260550.50</ValorPagar>
+      <MontoExento>400000.00</MontoExento>
+      <MontoTotal>400000.00</MontoTotal>
     </Totales>
   </Encabezado>
   <DetallesItems>
     <Item>
       <NumeroLinea>1</NumeroLinea>
-      <TablaCodigosItem>
-        <CodigosItem>
-          <TipoCodigo>INTERNA</TipoCodigo>
-          <CodigoItem>ASDFJKL</CodigoItem>
-        </CodigosItem>
-      </TablaCodigosItem>
-      <IndicadorFacturacion>1</IndicadorFacturacion>
-      <NombreItem>ALIMENTOS ENTEROS</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>5.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>1100.00</PrecioUnitarioItem>
-      <RecargoMonto>25.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>25.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>5525.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>2</NumeroLinea>
-      <TablaCodigosItem>
-        <CodigosItem>
-          <TipoCodigo>INTERNA</TipoCodigo>
-          <CodigoItem>ASDFJKL</CodigoItem>
-        </CodigosItem>
-      </TablaCodigosItem>
-      <IndicadorFacturacion>1</IndicadorFacturacion>
-      <NombreItem>ALIMENTOS ENTEROS</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>5.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>1100.00</PrecioUnitarioItem>
-      <RecargoMonto>25.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>25.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>5525.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>3</NumeroLinea>
-      <TablaCodigosItem>
-        <CodigosItem>
-          <TipoCodigo>INTERNA</TipoCodigo>
-          <CodigoItem>ASDFJKL</CodigoItem>
-        </CodigosItem>
-      </TablaCodigosItem>
-      <IndicadorFacturacion>1</IndicadorFacturacion>
-      <NombreItem>ALIMENTOS ENTEROS</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>5.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>1100.00</PrecioUnitarioItem>
-      <RecargoMonto>25.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>25.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>5525.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>4</NumeroLinea>
-      <TablaCodigosItem>
-        <CodigosItem>
-          <TipoCodigo>INTERNA</TipoCodigo>
-          <CodigoItem>ASDFJKL</CodigoItem>
-        </CodigosItem>
-      </TablaCodigosItem>
-      <IndicadorFacturacion>1</IndicadorFacturacion>
-      <NombreItem>ALIMENTOS ENTEROS</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>5.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>1100.00</PrecioUnitarioItem>
-      <RecargoMonto>25.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>25.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>5525.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>5</NumeroLinea>
-      <TablaCodigosItem>
-        <CodigosItem>
-          <TipoCodigo>INTERNA</TipoCodigo>
-          <CodigoItem>ASDFJKL</CodigoItem>
-        </CodigosItem>
-      </TablaCodigosItem>
-      <IndicadorFacturacion>1</IndicadorFacturacion>
-      <NombreItem>ALIMENTOS ENTEROS</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>5.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>1100.00</PrecioUnitarioItem>
-      <RecargoMonto>25.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>25.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>5525.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>6</NumeroLinea>
-      <IndicadorFacturacion>2</IndicadorFacturacion>
+      <IndicadorFacturacion>4</IndicadorFacturacion>
       <NombreItem>LECHE</NombreItem>
       <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>10.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>2500.00</PrecioUnitarioItem>
-      <RecargoMonto>35.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>35.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>25035.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>7</NumeroLinea>
-      <IndicadorFacturacion>2</IndicadorFacturacion>
-      <NombreItem>LECHE</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>10.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>2500.00</PrecioUnitarioItem>
-      <RecargoMonto>35.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>35.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>25035.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>8</NumeroLinea>
-      <IndicadorFacturacion>2</IndicadorFacturacion>
-      <NombreItem>LECHE</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>10.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>2500.00</PrecioUnitarioItem>
-      <RecargoMonto>35.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>35.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>25035.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>9</NumeroLinea>
-      <IndicadorFacturacion>2</IndicadorFacturacion>
-      <NombreItem>LECHE</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>10.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>2500.00</PrecioUnitarioItem>
-      <RecargoMonto>35.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>35.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>25035.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>10</NumeroLinea>
-      <IndicadorFacturacion>2</IndicadorFacturacion>
-      <NombreItem>LECHE</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>10.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>2500.00</PrecioUnitarioItem>
-      <RecargoMonto>35.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>35.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>25035.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>11</NumeroLinea>
-      <IndicadorFacturacion>4</IndicadorFacturacion>
-      <NombreItem>MAH</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>15.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>1100.00</PrecioUnitarioItem>
-      <RecargoMonto>50.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>50.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>16550.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>12</NumeroLinea>
-      <IndicadorFacturacion>4</IndicadorFacturacion>
-      <NombreItem>MAH</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>15.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>1100.00</PrecioUnitarioItem>
-      <RecargoMonto>50.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>50.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>16550.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>13</NumeroLinea>
-      <IndicadorFacturacion>4</IndicadorFacturacion>
-      <NombreItem>MAH</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>15.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>1100.00</PrecioUnitarioItem>
-      <RecargoMonto>50.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>50.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>16550.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>14</NumeroLinea>
-      <IndicadorFacturacion>4</IndicadorFacturacion>
-      <NombreItem>MAH</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>15.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>1100.00</PrecioUnitarioItem>
-      <RecargoMonto>50.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>50.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>16550.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>15</NumeroLinea>
-      <IndicadorFacturacion>4</IndicadorFacturacion>
-      <NombreItem>MAH</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>15.00</CantidadItem>
-      <UnidadMedida>6</UnidadMedida>
-      <PrecioUnitarioItem>1100.00</PrecioUnitarioItem>
-      <RecargoMonto>50.00</RecargoMonto>
-      <TablaSubRecargo>
-        <SubRecargo>
-          <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo>50.00</MontoSubRecargo>
-        </SubRecargo>
-      </TablaSubRecargo>
-      <MontoItem>16550.00</MontoItem>
+      <CantidadItem>10000.00</CantidadItem>
+      <UnidadMedida>47</UnidadMedida>
+      <PrecioUnitarioItem>40.00</PrecioUnitarioItem>
+      <MontoItem>400000.00</MontoItem>
     </Item>
   </DetallesItems>
+  <InformacionReferencia>
+    <NCFModificado>E320000000002</NCFModificado>
+    <FechaNCFModificado>01-04-2020</FechaNCFModificado>
+    <CodigoModificacion>3</CodigoModificacion>
+  </InformacionReferencia>
   <FechaHoraFirma>01-03-2025 05:07:00</FechaHoraFirma>
 </ECF>
