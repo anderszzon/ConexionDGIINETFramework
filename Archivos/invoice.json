@@ -3,11 +3,21 @@
 		"Encabezado": {
 			"Version": "1.0",
 			"IdDoc": {
-				"TipoeCF": "47",
-				"eNCF": "E470000000001",
+				"TipoeCF": "46",
+				"eNCF": "E460000000001",
 				"FechaVencimientoSecuencia": "31-12-2025",
-				"NumeroCuentaPago": "BB00058745214789635111111111",
-				"BancoPago": "BB0111111111111111111111111111111111111111111111111111111111111111111111111"
+				"TipoIngresos": "01",
+				"TipoPago": "2",
+				"FechaLimitePago": "06-05-2020",
+				"TerminoPago": "1 mes",
+				"TablaFormasPago": {
+					"FormaDePago": [
+						{
+						"FormaPago": "2",
+						"MontoPago": "1800000.00"
+						}
+					]
+				}
 			},
 			"Emisor": {
 				"RNCEmisor": "130322791",
@@ -18,58 +28,85 @@
 				"Provincia": "010000",
 				"CorreoEmisor": "DOCUMENTOSELECTRONICOSDE0612345678969789+9000000000000000000000000000001@123.COM",
 				"WebSite": "www.facturaelectronica.com",
+				"CodigoVendedor": "AA0000000100000000010000000002000000000300000000050000000006",
 				"NumeroFacturaInterna": "123456789016",
 				"NumeroPedidoInterno": "123456789016",
 				"FechaEmision": "01-04-2020"
 			},
 			"Comprador": {
-				"IdentificadorExtranjero": "533445888",
-				"RazonSocialComprador": "ALEJA FERMIN SANTOS"
+				"RNCComprador": "131880681",
+				"RazonSocialComprador": "ZONA FRANCA LOI",
+				"ContactoComprador": "MARCOS LLUBERES",
+				"CorreoComprador": "MARCOSLLUBERES@KKKK.COM",
+				"DireccionComprador": "ZONA HAINA",
+				"MunicipioComprador": "010100",
+				"ProvinciaComprador": "010000",
+				"FechaEntrega": "07-04-2020",
+				"ContactoEntrega": "JACINTO MANON",
+				"DireccionEntrega": "ZONA HAINA",
+				"TelefonoAdicional": "809-555-5050",
+				"FechaOrdenCompra": "10-03-2020",
+				"NumeroOrdenCompra": "4500352230",
+				"CodigoInternoComprador": "10633441"
+			},
+			"InformacionesAdicionales": {
+				"FechaEmbarque": "10-04-2020",
+				"NumeroEmbarque": "10010-1207-000254",
+				"NumeroContenedor": "ERTY227958722",
+				"NumeroReferencia": "1448",
+				"NombrePuertoEmbarque": "ZONA HAINA",
+				"CondicionesEntrega": "FOB",
+				"TotalFob": "1800.00",
+				"Seguro": "250.00",
+				"Flete": "22.00",
+				"TotalCif": "2000.00",
+				"RegimenAduanero": "EXPORTACION NACIONAL",
+				"NombrePuertoSalida": "DOSDQ",
+				"NombrePuertoDesembarque": "PTO RICO",
+				"PesoBruto": "25000.00",
+				"PesoNeto": "24878.00",
+				"UnidadPesoBruto": "21",
+				"UnidadPesoNeto": "21",
+				"CantidadBulto": "250.00",
+				"UnidadBulto": "25",
+				"VolumenBulto": "45",
+				"UnidadVolumen": "27"
+			},
+			"Transporte": {
+				"ViaTransporte": "02",
+				"PaisOrigen": "REPUBLICA DOMINICANA",
+				"DireccionDestino": "CALLE GUALLUBI NO. 09",
+				"PaisDestino": "PUERTO RICO",
+				"NumeroAlbaran": "56789UJILLL"
 			},
 			"Totales": {
-				"MontoExento": "180000.00",
-				"MontoTotal": "180000.00",
-				"TotalISRRetencion": "48600.00"
-			},
-			"OtraMoneda": {
-				"TipoMoneda": "USD",
-				"TipoCambio": "60.0000",
-				"MontoExentoOtraMoneda": "3000.00",
-				"MontoTotalOtraMoneda": "3000.00"
-				
+				"MontoGravadoTotal": "1800000.00",
+				"MontoGravadoI3": "1800000.00",
+				"ITBIS3": "0",
+				"TotalITBIS": "0.00",
+				"TotalITBIS3": "0.00",
+				"MontoTotal": "1800000.00"
 			}
 		},
 		"DetallesItems": {
 			"Item": [	
 				{
 					"NumeroLinea": "1",
-					"IndicadorFacturacion": "4",
-					"Retencion": {
-						"IndicadorAgenteRetencionoPercepcion": "1",
-						"MontoISRRetenido": "48600.00"
+					"TablaCodigosItem": {
+						"CodigosItem": [
+							{
+								"TipoCodigo": "INTERNA",
+								"CodigoItem": "123456"
+							}
+						]
 					},
-					"NombreItem": "LICENCIA WYI",
-					"IndicadorBienoServicio": "2",
-					"CantidadItem": "1.00",
+					"IndicadorFacturacion": "3",
+					"NombreItem": "AGUACATE CRIOLLO",
+					"IndicadorBienoServicio": "1",
+					"CantidadItem": "100.00",
 					"UnidadMedida": "43",
-					"PrecioUnitarioItem": "180000.00",
-					"OtraMonedaDetalle": {
-						"PrecioOtraMoneda": "3000.0000",
-						"MontoItemOtraMoneda": "3000.00"
-					},
-					"MontoItem": "180000.00"
-				}
-			]
-		},
-		"Subtotales": {
-			"Subtotal": [	
-				{
-					"NumeroSubTotal": "1",
-					"DescripcionSubtotal": "N/A",
-					"Orden": "1",
-					"SubTotalExento": "180000.00",
-					"MontoSubTotal": "180000.00",
-					"Lineas": "1"
+					"PrecioUnitarioItem": "18000.00",
+					"MontoItem": "1800000.00"
 				}
 			]
 		},
