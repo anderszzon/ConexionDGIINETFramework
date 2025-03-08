@@ -24,6 +24,8 @@ namespace ConexionDGII
         private static string _trackIdGlobal;
         private static string _eNCFGlobal;
         private static string _RNCEmisorGlobal;
+        private static string _eNCFGlobalAC;
+        private static string _RNCEmisorGlobalAC;
 
         private static readonly string tenantId = "Imocom.com.co";
         private static readonly string clientId = "c0c96a54-4c1a-4fbc-846b-11926cc304aa";
@@ -77,6 +79,10 @@ namespace ConexionDGII
             string jsonPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\invoice.json"; // Ruta del JSON
             string filePath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\invoice.xml"; // Ruta donde guardar el archivo
 
+            string jsonPathAC = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\aprobacioncomercial.json"; // Ruta del JSON
+            string filePathAC = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\aprobacioncomercial.xml"; // Ruta donde guardar el archivo
+
+
             try
             {
                 // X509Certificate2 cert = new X509Certificate2(pathCert, passCert, X509KeyStorageFlags.Exportable);
@@ -123,7 +129,32 @@ namespace ConexionDGII
 
                 Console.WriteLine(signedXmlPath);
 
+                // Convertir JSON de aprobacion comercial a XML
+
+                string jsonContentAC = File.ReadAllText(jsonPathAC);
+
+                JObject jsonObjAC = JObject.Parse(jsonContentAC); // Convertir JSON a JObject
+
+                _eNCFGlobalAC = jsonObjAC["ACECF"]["DetalleAprobacionComercial"]["eNCF"]?.ToString();
+                _RNCEmisorGlobalAC = jsonObjAC["ACECF"]["DetalleAprobacionComercial"]["RNCEmisor"]?.ToString();
+
+                XmlDocument xmlDocumentAC = JsonConvert.DeserializeXmlNode(jsonContentAC);
+
+                // Agregar la declaración XML estándar
+                XmlDeclaration xmlDeclarationAC = xmlDocumentAC.CreateXmlDeclaration("1.0", "utf-8", null);
+                XmlElement rootAC = xmlDocumentAC.DocumentElement;
+                xmlDocumentAC.InsertBefore(xmlDeclarationAC, rootAC);
+
+                // Guardar el XML en un archivo con la declaración XML
+                using (XmlWriter writer = XmlWriter.Create(filePathAC, new XmlWriterSettings { Indent = true, Encoding = System.Text.Encoding.UTF8 }))
+                {
+                    xmlDocumentAC.WriteTo(writer);
+                }
+
                 string rutaFacturaFirmada = await FirmarFactura(passCert);
+
+                await FirmarAprobacionComercial(passCert);
+
                 return rutaFacturaFirmada; // ✅ Devolver el JSON recibido
 
             }
@@ -162,6 +193,43 @@ namespace ConexionDGII
                 Console.WriteLine("XML firmado y guardado en: " + signedXmlPath);
 
                 invoice = "Factura & Semilla Firmada";
+                return invoice; // Devuelve el JSON como string
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return $"Error: {ex.Message}"; // ✅ Devuelve error como string
+            }
+        }
+
+        public static async Task<string> FirmarAprobacionComercial(string passCert)
+        {
+            string xmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\aprobacioncomercial.xml";  // Ruta donde tienes tu semilla
+            string signedXmlPath = $"C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\{_RNCEmisorGlobalAC}{_eNCFGlobalAC}.xml"; // Archivo firmado
+            string pathCert = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\20250130-2113054-YAD25P5MJ.p12"; // Ruta de tu certificado
+
+            string invoice;
+
+            try
+            {
+                // X509Certificate2 cert = new X509Certificate2(pathCert, passCert, X509KeyStorageFlags.Exportable);
+
+                XmlDocument xmlDoc = new XmlDocument();
+                //xmlDoc.PreserveWhitespace = true;
+                xmlDoc.Load(xmlPath);
+
+                //SignXmlRepo(xmlDoc, pathCert, passCert);
+
+
+                SignXmlDISCORD(xmlDoc, pathCert, passCert);
+
+
+                // Guardar el XML firmado
+                xmlDoc.Save(signedXmlPath);
+                Console.WriteLine("XML firmado y guardado en: " + signedXmlPath);
+
+                invoice = "Aprobacion Comercial Firmada";
                 return invoice; // Devuelve el JSON como string
 
             }
@@ -395,6 +463,56 @@ namespace ConexionDGII
             {
                 Console.WriteLine($"❌ Error: {ex.Message}");
                 return $"❌ Error: {ex.Message}"; // ✅ Devuelve error como string
+
+            }
+        }
+
+        public static async Task RecepcionAprobacionComercial()
+        {
+            string urlRecepcionFactura = "https://ecf.dgii.gov.do/certecf/AprobacionComercial/api/AprobacionComercial";
+
+            string xmlPath = $"C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\{_RNCEmisorGlobalAC}{_eNCFGlobalAC}.xml"; // Ruta del XML
+
+            try
+            {
+
+                using (HttpClient client = new HttpClient())
+                {
+                    // Agregar el token de autorización
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", _tokenGlobal);
+                    client.DefaultRequestHeaders.Add("accept", "application/json");
+
+                    // Crear el contenido multipart/form-data
+                    using (var form = new MultipartFormDataContent())
+                    {
+                        // Leer el archivo XML
+                        var fileContent = new ByteArrayContent(File.ReadAllBytes(xmlPath));
+                        fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/xml");
+
+                        // Agregar el archivo al formulario
+                        form.Add(fileContent, "xml", Path.GetFileName(xmlPath));
+
+                        // Enviar la solicitud POST
+                        HttpResponseMessage response = await client.PostAsync(urlRecepcionFactura, form);
+                        string responseBody = await response.Content.ReadAsStringAsync();
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            Console.WriteLine(responseBody);
+
+                            var json = JObject.Parse(responseBody);
+                        }
+                        else
+                        {
+                            Console.WriteLine(response.StatusCode);
+                            Console.WriteLine(responseBody);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Error: {ex.Message}");
 
             }
         }
