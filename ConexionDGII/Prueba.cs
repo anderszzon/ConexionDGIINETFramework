@@ -155,7 +155,9 @@ namespace ConexionDGII
 
                 await FirmarAprobacionComercial(passCert);
 
-                return rutaFacturaFirmada; // ✅ Devolver el JSON recibido
+                //return rutaFacturaFirmada; 
+
+                return jsonContent; // ✅ Devolver el JSON recibido
 
             }
             catch (Exception ex)
