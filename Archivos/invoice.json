@@ -3,21 +3,12 @@
 		"Encabezado": {
 			"Version": "1.0",
 			"IdDoc": {
-				"TipoeCF": "46",
-				"eNCF": "E460000000001",
+				"TipoeCF": "45",
+				"eNCF": "E450000000001",
 				"FechaVencimientoSecuencia": "31-12-2025",
+				"IndicadorMontoGravado": "0",
 				"TipoIngresos": "01",
-				"TipoPago": "2",
-				"FechaLimitePago": "06-05-2020",
-				"TerminoPago": "1 mes",
-				"TablaFormasPago": {
-					"FormaDePago": [
-						{
-						"FormaPago": "2",
-						"MontoPago": "1800000.00"
-						}
-					]
-				}
+				"TipoPago": "1"
 			},
 			"Emisor": {
 				"RNCEmisor": "130322791",
@@ -31,82 +22,48 @@
 				"CodigoVendedor": "AA0000000100000000010000000002000000000300000000050000000006",
 				"NumeroFacturaInterna": "123456789016",
 				"NumeroPedidoInterno": "123456789016",
+				"ZonaVenta": "NORT",
 				"FechaEmision": "01-04-2020"
 			},
 			"Comprador": {
-				"RNCComprador": "131880681",
-				"RazonSocialComprador": "ZONA FRANCA LOI",
-				"ContactoComprador": "MARCOS LLUBERES",
-				"CorreoComprador": "MARCOSLLUBERES@KKKK.COM",
-				"DireccionComprador": "ZONA HAINA",
+				"RNCComprador": "131880657",
+				"RazonSocialComprador": "DOCUMENTOS ELECTRONICOS DE 04",
+				"ContactoComprador": "MARCOS LATIPLOL",
+				"CorreoComprador": "MARCOSLATIPLOL@KKKK.COM",
+				"DireccionComprador": "CALLE JACINTO DE LA CONCHA FELIZ ESQUINA 27 DE FEBRERO,FRENTE A DOMINO",
 				"MunicipioComprador": "010100",
 				"ProvinciaComprador": "010000",
-				"FechaEntrega": "07-04-2020",
-				"ContactoEntrega": "JACINTO MANON",
-				"DireccionEntrega": "ZONA HAINA",
-				"TelefonoAdicional": "809-555-5050",
-				"FechaOrdenCompra": "10-03-2020",
-				"NumeroOrdenCompra": "4500352230",
-				"CodigoInternoComprador": "10633441"
+				"FechaEntrega": "10-10-2020",
+				"FechaOrdenCompra": "10-11-2018",
+				"NumeroOrdenCompra": "4500352238",
+				"CodigoInternoComprador": "10633440"
 			},
 			"InformacionesAdicionales": {
-				"FechaEmbarque": "10-04-2020",
-				"NumeroEmbarque": "10010-1207-000254",
-				"NumeroContenedor": "ERTY227958722",
-				"NumeroReferencia": "1448",
-				"NombrePuertoEmbarque": "ZONA HAINA",
-				"CondicionesEntrega": "FOB",
-				"TotalFob": "1800.00",
-				"Seguro": "250.00",
-				"Flete": "22.00",
-				"TotalCif": "2000.00",
-				"RegimenAduanero": "EXPORTACION NACIONAL",
-				"NombrePuertoSalida": "DOSDQ",
-				"NombrePuertoDesembarque": "PTO RICO",
-				"PesoBruto": "25000.00",
-				"PesoNeto": "24878.00",
-				"UnidadPesoBruto": "21",
-				"UnidadPesoNeto": "21",
-				"CantidadBulto": "250.00",
-				"UnidadBulto": "25",
-				"VolumenBulto": "45",
-				"UnidadVolumen": "27"
-			},
-			"Transporte": {
-				"ViaTransporte": "02",
-				"PaisOrigen": "REPUBLICA DOMINICANA",
-				"DireccionDestino": "CALLE GUALLUBI NO. 09",
-				"PaisDestino": "PUERTO RICO",
-				"NumeroAlbaran": "56789UJILLL"
+				"NumeroContenedor": "8019289",
+				"NumeroReferencia": "1447"
 			},
 			"Totales": {
-				"MontoGravadoTotal": "1800000.00",
-				"MontoGravadoI3": "1800000.00",
-				"ITBIS3": "0",
-				"TotalITBIS": "0.00",
-				"TotalITBIS3": "0.00",
-				"MontoTotal": "1800000.00"
+				"MontoGravadoTotal": "30000.00",
+				"MontoGravadoI1": "30000.00",
+				"ITBIS1": "18",
+				"TotalITBIS": "5400.00",
+				"TotalITBIS1": "5400.00",
+				"MontoTotal": "35400.00",
+				"ValorPagar": "35400.00"
 			}
 		},
 		"DetallesItems": {
 			"Item": [	
 				{
 					"NumeroLinea": "1",
-					"TablaCodigosItem": {
-						"CodigosItem": [
-							{
-								"TipoCodigo": "INTERNA",
-								"CodigoItem": "123456"
-							}
-						]
-					},
-					"IndicadorFacturacion": "3",
-					"NombreItem": "AGUACATE CRIOLLO",
-					"IndicadorBienoServicio": "1",
-					"CantidadItem": "100.00",
+					"IndicadorFacturacion": "1",
+					"NombreItem": "SERVICIO PUBLICIDAD",
+					"IndicadorBienoServicio": "2",
+					"DescripcionItem": "prestación de servicios relacionados con la creación, ejecución y distribución de campañas publicitarias.",
+					"CantidadItem": "1.00",
 					"UnidadMedida": "43",
-					"PrecioUnitarioItem": "18000.00",
-					"MontoItem": "1800000.00"
+					"PrecioUnitarioItem": "30000.00",
+					"MontoItem": "30000.00"
 				}
 			]
 		},

@@ -3,19 +3,12 @@
   <Encabezado>
     <Version>1.0</Version>
     <IdDoc>
-      <TipoeCF>46</TipoeCF>
-      <eNCF>E460000000001</eNCF>
+      <TipoeCF>45</TipoeCF>
+      <eNCF>E450000000001</eNCF>
       <FechaVencimientoSecuencia>31-12-2025</FechaVencimientoSecuencia>
+      <IndicadorMontoGravado>0</IndicadorMontoGravado>
       <TipoIngresos>01</TipoIngresos>
-      <TipoPago>2</TipoPago>
-      <FechaLimitePago>06-05-2020</FechaLimitePago>
-      <TerminoPago>1 mes</TerminoPago>
-      <TablaFormasPago>
-        <FormaDePago>
-          <FormaPago>2</FormaPago>
-          <MontoPago>1800000.00</MontoPago>
-        </FormaDePago>
-      </TablaFormasPago>
+      <TipoPago>1</TipoPago>
     </IdDoc>
     <Emisor>
       <RNCEmisor>130322791</RNCEmisor>
@@ -29,79 +22,47 @@
       <CodigoVendedor>AA0000000100000000010000000002000000000300000000050000000006</CodigoVendedor>
       <NumeroFacturaInterna>123456789016</NumeroFacturaInterna>
       <NumeroPedidoInterno>123456789016</NumeroPedidoInterno>
+      <ZonaVenta>NORT</ZonaVenta>
       <FechaEmision>01-04-2020</FechaEmision>
     </Emisor>
     <Comprador>
-      <RNCComprador>131880681</RNCComprador>
-      <RazonSocialComprador>ZONA FRANCA LOI</RazonSocialComprador>
-      <ContactoComprador>MARCOS LLUBERES</ContactoComprador>
-      <CorreoComprador>MARCOSLLUBERES@KKKK.COM</CorreoComprador>
-      <DireccionComprador>ZONA HAINA</DireccionComprador>
+      <RNCComprador>131880657</RNCComprador>
+      <RazonSocialComprador>DOCUMENTOS ELECTRONICOS DE 04</RazonSocialComprador>
+      <ContactoComprador>MARCOS LATIPLOL</ContactoComprador>
+      <CorreoComprador>MARCOSLATIPLOL@KKKK.COM</CorreoComprador>
+      <DireccionComprador>CALLE JACINTO DE LA CONCHA FELIZ ESQUINA 27 DE FEBRERO,FRENTE A DOMINO</DireccionComprador>
       <MunicipioComprador>010100</MunicipioComprador>
       <ProvinciaComprador>010000</ProvinciaComprador>
-      <FechaEntrega>07-04-2020</FechaEntrega>
-      <ContactoEntrega>JACINTO MANON</ContactoEntrega>
-      <DireccionEntrega>ZONA HAINA</DireccionEntrega>
-      <TelefonoAdicional>809-555-5050</TelefonoAdicional>
-      <FechaOrdenCompra>10-03-2020</FechaOrdenCompra>
-      <NumeroOrdenCompra>4500352230</NumeroOrdenCompra>
-      <CodigoInternoComprador>10633441</CodigoInternoComprador>
+      <FechaEntrega>10-10-2020</FechaEntrega>
+      <FechaOrdenCompra>10-11-2018</FechaOrdenCompra>
+      <NumeroOrdenCompra>4500352238</NumeroOrdenCompra>
+      <CodigoInternoComprador>10633440</CodigoInternoComprador>
     </Comprador>
     <InformacionesAdicionales>
-      <FechaEmbarque>10-04-2020</FechaEmbarque>
-      <NumeroEmbarque>10010-1207-000254</NumeroEmbarque>
-      <NumeroContenedor>ERTY227958722</NumeroContenedor>
-      <NumeroReferencia>1448</NumeroReferencia>
-      <NombrePuertoEmbarque>ZONA HAINA</NombrePuertoEmbarque>
-      <CondicionesEntrega>FOB</CondicionesEntrega>
-      <TotalFob>1800.00</TotalFob>
-      <Seguro>250.00</Seguro>
-      <Flete>22.00</Flete>
-      <TotalCif>2000.00</TotalCif>
-      <RegimenAduanero>EXPORTACION NACIONAL</RegimenAduanero>
-      <NombrePuertoSalida>DOSDQ</NombrePuertoSalida>
-      <NombrePuertoDesembarque>PTO RICO</NombrePuertoDesembarque>
-      <PesoBruto>25000.00</PesoBruto>
-      <PesoNeto>24878.00</PesoNeto>
-      <UnidadPesoBruto>21</UnidadPesoBruto>
-      <UnidadPesoNeto>21</UnidadPesoNeto>
-      <CantidadBulto>250.00</CantidadBulto>
-      <UnidadBulto>25</UnidadBulto>
-      <VolumenBulto>45</VolumenBulto>
-      <UnidadVolumen>27</UnidadVolumen>
+      <NumeroContenedor>8019289</NumeroContenedor>
+      <NumeroReferencia>1447</NumeroReferencia>
     </InformacionesAdicionales>
-    <Transporte>
-      <ViaTransporte>02</ViaTransporte>
-      <PaisOrigen>REPUBLICA DOMINICANA</PaisOrigen>
-      <DireccionDestino>CALLE GUALLUBI NO. 09</DireccionDestino>
-      <PaisDestino>PUERTO RICO</PaisDestino>
-      <NumeroAlbaran>56789UJILLL</NumeroAlbaran>
-    </Transporte>
     <Totales>
-      <MontoGravadoTotal>1800000.00</MontoGravadoTotal>
-      <MontoGravadoI3>1800000.00</MontoGravadoI3>
-      <ITBIS3>0</ITBIS3>
-      <TotalITBIS>0.00</TotalITBIS>
-      <TotalITBIS3>0.00</TotalITBIS3>
-      <MontoTotal>1800000.00</MontoTotal>
+      <MontoGravadoTotal>30000.00</MontoGravadoTotal>
+      <MontoGravadoI1>30000.00</MontoGravadoI1>
+      <ITBIS1>18</ITBIS1>
+      <TotalITBIS>5400.00</TotalITBIS>
+      <TotalITBIS1>5400.00</TotalITBIS1>
+      <MontoTotal>35400.00</MontoTotal>
+      <ValorPagar>35400.00</ValorPagar>
     </Totales>
   </Encabezado>
   <DetallesItems>
     <Item>
       <NumeroLinea>1</NumeroLinea>
-      <TablaCodigosItem>
-        <CodigosItem>
-          <TipoCodigo>INTERNA</TipoCodigo>
-          <CodigoItem>123456</CodigoItem>
-        </CodigosItem>
-      </TablaCodigosItem>
-      <IndicadorFacturacion>3</IndicadorFacturacion>
-      <NombreItem>AGUACATE CRIOLLO</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>100.00</CantidadItem>
+      <IndicadorFacturacion>1</IndicadorFacturacion>
+      <NombreItem>SERVICIO PUBLICIDAD</NombreItem>
+      <IndicadorBienoServicio>2</IndicadorBienoServicio>
+      <DescripcionItem>prestación de servicios relacionados con la creación, ejecución y distribución de campañas publicitarias.</DescripcionItem>
+      <CantidadItem>1.00</CantidadItem>
       <UnidadMedida>43</UnidadMedida>
-      <PrecioUnitarioItem>18000.00</PrecioUnitarioItem>
-      <MontoItem>1800000.00</MontoItem>
+      <PrecioUnitarioItem>30000.00</PrecioUnitarioItem>
+      <MontoItem>30000.00</MontoItem>
     </Item>
   </DetallesItems>
   <FechaHoraFirma>01-03-2025 05:07:00</FechaHoraFirma>
