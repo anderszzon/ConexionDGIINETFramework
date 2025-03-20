@@ -4,7 +4,7 @@
     <Version>1.0</Version>
     <IdDoc>
       <TipoeCF>31</TipoeCF>
-      <eNCF>E310000000019</eNCF>
+      <eNCF>E310000000021</eNCF>
       <FechaVencimientoSecuencia>31-12-2025</FechaVencimientoSecuencia>
       <IndicadorEnvioDiferido>1</IndicadorEnvioDiferido>
       <IndicadorMontoGravado>0</IndicadorMontoGravado>
@@ -58,36 +58,6 @@
       <UnidadMedida>31</UnidadMedida>
       <PrecioUnitarioItem>400.00</PrecioUnitarioItem>
       <MontoItem>6000.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>2</NumeroLinea>
-      <IndicadorFacturacion>1</IndicadorFacturacion>
-      <NombreItem>Licencia Software</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>5.00</CantidadItem>
-      <UnidadMedida>31</UnidadMedida>
-      <PrecioUnitarioItem>800.00</PrecioUnitarioItem>
-      <MontoItem>4000.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>3</NumeroLinea>
-      <IndicadorFacturacion>1</IndicadorFacturacion>
-      <NombreItem>Licencia Software</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>5.00</CantidadItem>
-      <UnidadMedida>31</UnidadMedida>
-      <PrecioUnitarioItem>800.00</PrecioUnitarioItem>
-      <MontoItem>4000.00</MontoItem>
-    </Item>
-    <Item>
-      <NumeroLinea>4</NumeroLinea>
-      <IndicadorFacturacion>1</IndicadorFacturacion>
-      <NombreItem>Licencia Software</NombreItem>
-      <IndicadorBienoServicio>1</IndicadorBienoServicio>
-      <CantidadItem>5.00</CantidadItem>
-      <UnidadMedida>31</UnidadMedida>
-      <PrecioUnitarioItem>800.00</PrecioUnitarioItem>
-      <MontoItem>4000.00</MontoItem>
     </Item>
   </DetallesItems>
   <FechaHoraFirma>01-03-2025 05:07:00</FechaHoraFirma>
