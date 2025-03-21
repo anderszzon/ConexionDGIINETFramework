@@ -27,12 +27,6 @@ namespace ConexionDGII
         private static string _eNCFGlobalAC;
         private static string _RNCEmisorGlobalAC;
 
-        private static readonly string tenantId = "Imocom.com.co";
-        private static readonly string clientId = "c0c96a54-4c1a-4fbc-846b-11926cc304aa";
-        private static readonly string clientSecret = "nNM8Q~-mDVMVJXAS74IR0UaiHWHhWztBgNY4faB9";
-        private static readonly string resource = "https://proximoprd.operations.dynamics.com/.default";
-        private static readonly string oDataUrl = "https://proximoprd.operations.dynamics.com/data/IMOCCertificadosProvEntity";
-
 
         public static string EnviarTokenSincrona(string urlSemilla, string passCert, string jsonInvoice)
         {
@@ -59,8 +53,18 @@ namespace ConexionDGII
                     Console.WriteLine($"XML guardado en: {filePath}");
 
                     // ✅ Llamar al método y recibir el JSON
-                    string rutaSemillaFirmada = await FirmarSemilla(passCert, jsonInvoice);
-                    return rutaSemillaFirmada; // ✅ Devolver el JSON recibido
+                    string JsonEnviado = await FirmarSemilla(passCert, jsonInvoice);
+
+                    // ✅ Crear un objeto con el XML y el JSON firmado
+                    var resultado = new
+                    {
+                        xml = xmlContent,
+                        json = JsonEnviado
+                    };
+
+                    string jsonString = JsonConvert.SerializeObject(resultado);
+
+                    return jsonString; // ✅ Devolver el JSON recibido
                 }
                 else
                 {
