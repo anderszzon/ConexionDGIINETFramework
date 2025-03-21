@@ -52,14 +52,21 @@ namespace ConexionDGII
                     Console.WriteLine(xmlContent);
                     Console.WriteLine($"XML guardado en: {filePath}");
 
+
+                    JObject jsonObj = JObject.Parse(jsonInvoice); // Convertir JSON a JObject
+
+                    _eNCFGlobal = jsonObj["ECF"]["Encabezado"]["IdDoc"]["eNCF"]?.ToString();
+                    _RNCEmisorGlobal = jsonObj["ECF"]["Encabezado"]["Emisor"]["RNCEmisor"]?.ToString();
+
                     // ✅ Llamar al método y recibir el JSON
-                    string JsonEnviado = await FirmarSemilla(passCert, jsonInvoice);
+                    string JsonEnviado = await FirmarSemilla(passCert, jsonInvoice, xmlContent);
 
                     // ✅ Crear un objeto con el XML y el JSON firmado
                     var resultado = new
                     {
                         xml = xmlContent,
-                        json = JsonEnviado
+                        json = JsonEnviado,
+                        encf = _eNCFGlobal
                     };
 
                     string jsonString = JsonConvert.SerializeObject(resultado);
@@ -74,7 +81,7 @@ namespace ConexionDGII
             }
         }
 
-        public static async Task<string> FirmarSemilla(string passCert, string jsonContent)
+        public static async Task<string> FirmarSemilla(string passCert, string jsonContent, string xmlContent)
         {
             string xmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\semilla.xml";  // Ruta donde tienes tu semilla
             string signedXmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\semillaFirmada.xml"; // Archivo firmado
@@ -110,12 +117,6 @@ namespace ConexionDGII
                 // Leer el archivo JSON
 
                 //string jsonContent = File.ReadAllText(jsonPath);
-
-
-                JObject jsonObj = JObject.Parse(jsonContent); // Convertir JSON a JObject
-
-                _eNCFGlobal = jsonObj["ECF"]["Encabezado"]["IdDoc"]["eNCF"]?.ToString();
-                _RNCEmisorGlobal = jsonObj["ECF"]["Encabezado"]["Emisor"]["RNCEmisor"]?.ToString();
 
                 XmlDocument xmlDocument = JsonConvert.DeserializeXmlNode(jsonContent);
 
