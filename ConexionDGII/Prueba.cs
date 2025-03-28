@@ -27,6 +27,11 @@ namespace ConexionDGII
         private static string _eNCFGlobalAC;
         private static string _RNCEmisorGlobalAC;
 
+        private static string _XMLSemilla;
+        private static string _XMLSemillaFirmada;
+        private static string _XMLFactura;
+        private static string _XMLFacturaFirmada;
+
 
         public static string EnviarTokenSincrona(string urlSemilla, string passCert, string jsonInvoice)
         {
@@ -44,28 +49,33 @@ namespace ConexionDGII
 
                 if (response.IsSuccessStatusCode)
                 {
-                    string xmlContent = await response.Content.ReadAsStringAsync();
+                    string xmlSemilla = await response.Content.ReadAsStringAsync();
+
+                    _XMLSemilla = xmlSemilla;
 
                     // Guardar en un archivo
-                    File.WriteAllText(filePath, xmlContent);
+                    //File.WriteAllText(filePath, xmlContent);
+                    //Console.WriteLine(xmlContent);
+                    //Console.WriteLine($"XML guardado en: {filePath}");
 
-                    Console.WriteLine(xmlContent);
-                    Console.WriteLine($"XML guardado en: {filePath}");
+                    // Llamar al método y recibir el JSON
+                    string JsonEnviado = await FirmarSemilla(passCert, jsonInvoice, xmlSemilla);
 
-                    // ✅ Llamar al método y recibir el JSON
-                    string JsonEnviado = await FirmarSemilla(passCert, jsonInvoice, xmlContent);
-
-                    // ✅ Crear un objeto con el XML y el JSON firmado
+                    // Crear un objeto con el XML y el JSON firmado
                     var resultado = new
                     {
-                        xml = xmlContent,
                         json = JsonEnviado,
-                        encf = _eNCFGlobal
+                        encf = _eNCFGlobal,
+                        xmlsemilla = _XMLSemilla,
+                        xmlsemillafirmada = _XMLSemillaFirmada,
+                        token = _tokenGlobal, 
+                        xmlfactura = _XMLFactura,
+                        xmlfacturafirmada = _XMLFacturaFirmada
                     };
 
                     string jsonString = JsonConvert.SerializeObject(resultado);
 
-                    return jsonString; // ✅ Devolver el JSON recibido
+                    return jsonString; // Devolver el JSON recibido
                 }
                 else
                 {
@@ -79,13 +89,11 @@ namespace ConexionDGII
         {
             string xmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\semilla.xml";  // Ruta donde tienes tu semilla
             string signedXmlPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\semillaFirmada.xml"; // Archivo firmado
+
             string pathCert = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\20250130-2113054-YAD25P5MJ.p12"; // Ruta de tu certificado
 
             string jsonPath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\invoice.json"; // Ruta del JSON
             string filePath = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\invoice.xml"; // Ruta donde guardar el archivo
-
-            string jsonPathAC = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\aprobacioncomercial.json"; // Ruta del JSON
-            string filePathAC = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\aprobacioncomercial.xml"; // Ruta donde guardar el archivo
 
 
             try
@@ -94,22 +102,24 @@ namespace ConexionDGII
 
                 XmlDocument xmlDoc = new XmlDocument();
                 //xmlDoc.PreserveWhitespace = true;
-                xmlDoc.Load(xmlPath);
+                //xmlDoc.Load(xmlPath);
+
+                xmlDoc.LoadXml(_XMLSemilla);
 
                 //SignXmlRepo(xmlDoc, pathCert, passCert);
 
-
                 SignXmlDISCORD(xmlDoc, pathCert, passCert);
 
-
                 // Guardar el XML firmado
-                xmlDoc.Save(signedXmlPath);
-                Console.WriteLine("XML firmado y guardado en: " + signedXmlPath);
+                //xmlDoc.Save(signedXmlPath);
+                //Console.WriteLine("XML firmado y guardado en: " + signedXmlPath);
 
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                string xmlSemillaFirmada = xmlDoc.OuterXml; // <-- Aquí obtienes el XML firmado en string
 
-                // Leer el archivo JSON
+                _XMLSemillaFirmada = xmlSemillaFirmada;
 
+                ////////////////////////////////////////////////////Leer el archivo Factura en JSON & Convertir en XML///////////////////////////////////////////////////////////////////////////
+ 
                 string jsonContent = File.ReadAllText(jsonPath);
 
                 JObject jsonObj = JObject.Parse(jsonContent); // Convertir JSON a JObject
@@ -124,52 +134,26 @@ namespace ConexionDGII
                 XmlElement root = xmlDocument.DocumentElement;
                 xmlDocument.InsertBefore(xmlDeclaration, root);
 
-                // Guardar el XML en un archivo con la declaración XML
-                using (XmlWriter writer = XmlWriter.Create(filePath, new XmlWriterSettings { Indent = true, Encoding = System.Text.Encoding.UTF8 }))
-                {
-                    xmlDocument.WriteTo(writer);
-                }
-
-                //string xmlContent = xmlDocument.OuterXml;
-                //File.WriteAllText(filePath, xmlContent);
-
-                Console.WriteLine(signedXmlPath);
-
-                // Convertir JSON de aprobacion comercial a XML
-
-                string jsonContentAC = File.ReadAllText(jsonPathAC);
-
-                JObject jsonObjAC = JObject.Parse(jsonContentAC); // Convertir JSON a JObject
-
-                _eNCFGlobalAC = jsonObjAC["ACECF"]["DetalleAprobacionComercial"]["eNCF"]?.ToString();
-                _RNCEmisorGlobalAC = jsonObjAC["ACECF"]["DetalleAprobacionComercial"]["RNCEmisor"]?.ToString();
-
-                XmlDocument xmlDocumentAC = JsonConvert.DeserializeXmlNode(jsonContentAC);
-
-                // Agregar la declaración XML estándar
-                XmlDeclaration xmlDeclarationAC = xmlDocumentAC.CreateXmlDeclaration("1.0", "utf-8", null);
-                XmlElement rootAC = xmlDocumentAC.DocumentElement;
-                xmlDocumentAC.InsertBefore(xmlDeclarationAC, rootAC);
+                string xmlFactura = xmlDocument.OuterXml; // <-- Aquí obtienes el XML firmado en string
+                _XMLFactura = xmlFactura;
 
                 // Guardar el XML en un archivo con la declaración XML
-                using (XmlWriter writer = XmlWriter.Create(filePathAC, new XmlWriterSettings { Indent = true, Encoding = System.Text.Encoding.UTF8 }))
-                {
-                    xmlDocumentAC.WriteTo(writer);
-                }
+                //using (XmlWriter writer = XmlWriter.Create(filePath, new XmlWriterSettings { Indent = true, Encoding = System.Text.Encoding.UTF8 }))
+                //{
+                //    xmlDocument.WriteTo(writer);
+                //}
+ 
+                ////////////////////////////////////////////////////Firmar Comprobantes ///////////////////////////////////////////////////////////////////////////
 
-                string rutaFacturaFirmada = await FirmarFactura(passCert);
+                string xmlFacturaFirmada = await FirmarFactura(passCert);
 
-                await FirmarAprobacionComercial(passCert);
-
-                //return rutaFacturaFirmada; 
-
-                return jsonContent; // ✅ Devolver el JSON recibido
+                return jsonContent; 
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                return $"Error: {ex.Message}"; // ✅ Devuelve error como string
+                return $"Error: {ex.Message}"; 
 
             }
         }
@@ -180,15 +164,15 @@ namespace ConexionDGII
             string signedXmlPath = $"C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\{_RNCEmisorGlobal}{_eNCFGlobal}.xml"; // Archivo firmado
             string pathCert = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\20250130-2113054-YAD25P5MJ.p12"; // Ruta de tu certificado
 
-            string invoice;
-
             try
             {
                 // X509Certificate2 cert = new X509Certificate2(pathCert, passCert, X509KeyStorageFlags.Exportable);
 
                 XmlDocument xmlDoc = new XmlDocument();
                 //xmlDoc.PreserveWhitespace = true;
-                xmlDoc.Load(xmlPath);
+                //xmlDoc.Load(xmlPath);
+
+                xmlDoc.LoadXml(_XMLFactura);
 
                 //SignXmlRepo(xmlDoc, pathCert, passCert);
 
@@ -200,8 +184,10 @@ namespace ConexionDGII
                 xmlDoc.Save(signedXmlPath);
                 Console.WriteLine("XML firmado y guardado en: " + signedXmlPath);
 
-                invoice = "Factura & Semilla Firmada";
-                return invoice; // Devuelve el JSON como string
+                string xmlFacturaFirmada = xmlDoc.OuterXml; // <-- Aquí obtienes el XML firmado en string
+                _XMLFacturaFirmada = xmlFacturaFirmada;
+
+                return xmlFacturaFirmada; // Devuelve el JSON como string
 
             }
             catch (Exception ex)
@@ -374,7 +360,9 @@ namespace ConexionDGII
                     using (var form = new MultipartFormDataContent())
                     {
                         // Leer el archivo XML
-                        var fileContent = new ByteArrayContent(File.ReadAllBytes(filePath));
+                        //var fileContent = new ByteArrayContent(File.ReadAllBytes(filePath));
+
+                        var fileContent = new ByteArrayContent(Encoding.UTF8.GetBytes(_XMLSemillaFirmada));
                         fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("text/xml");
 
                         // Agregar el archivo al formulario con el nombre "xml"
@@ -394,24 +382,24 @@ namespace ConexionDGII
                             var json = JObject.Parse(responseBody);
                             _tokenGlobal = json["token"]?.ToString();
 
-                            // ✅ Llamar al método y recibir el JSON
+                            // Llamar al método y recibir el JSON
                             string JsonFinal = await EnviarFacturaElectronica(urlRecepcionFactura, urlConsultaFactura);
-                            return JsonFinal; // ✅ Devolver el JSON recibido
+                            return JsonFinal; // Devolver el JSON recibido
 
                         }
                         else
                         {
                             Console.WriteLine(response.StatusCode);
                             Console.WriteLine(responseBody);
-                            return $"Error: {response.StatusCode} - {responseBody}"; // ✅ Devuelve error
+                            return $"Error: {response.StatusCode} - {responseBody}"; // Devuelve error
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
-                return $"❌ Error: {ex.Message}"; // ✅ Devuelve error como string
+                Console.WriteLine($" Error: {ex.Message}");
+                return $" Error: {ex.Message}"; // Devuelve error como string
 
             }
         }
@@ -453,7 +441,7 @@ namespace ConexionDGII
 
                             // ✅ Llamar al método y recibir el JSON
                             string estadoFacturaJson = await ConsultarEstadoFacturaElectronica(urlConsultaFactura);
-                            return estadoFacturaJson; // ✅ Devolver el JSON recibido
+                            return estadoFacturaJson; // Devolver el JSON recibido
 
                         }
                         else
@@ -461,7 +449,7 @@ namespace ConexionDGII
                             Console.WriteLine(response.StatusCode);
                             Console.WriteLine(responseBody);
 
-                            return $"Error: {response.StatusCode} - {responseBody}"; // ✅ Devuelve error
+                            return $"Error: {response.StatusCode} - {responseBody}"; // Devuelve error
 
                         }
                     }
@@ -469,20 +457,48 @@ namespace ConexionDGII
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
-                return $"❌ Error: {ex.Message}"; // ✅ Devuelve error como string
+                Console.WriteLine($" Error: {ex.Message}");
+                return $" Error: {ex.Message}"; // Devuelve error como string
 
             }
         }
 
-        public static async Task RecepcionAprobacionComercial()
+        public static async Task RecepcionAprobacionComercial(string passCert)
         {
             string urlRecepcionFactura = "https://ecf.dgii.gov.do/certecf/AprobacionComercial/api/AprobacionComercial";
+
+            string jsonPathAC = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\aprobacioncomercial.json"; // Ruta del JSON
+            string filePathAC = "C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\aprobacioncomercial.xml"; // Ruta donde guardar el archivo
 
             string xmlPath = $"C:\\Users\\Admina167bb248c\\source\\repos\\ConexionDGII\\Archivos\\{_RNCEmisorGlobalAC}{_eNCFGlobalAC}.xml"; // Ruta del XML
 
             try
             {
+                ////////////////////////////////////////////////////Leer el archivo de Aprobacion Comercial JSON a XML///////////////////////////////////////////////////////////////////////////
+
+                string jsonContentAC = File.ReadAllText(jsonPathAC);
+
+                JObject jsonObjAC = JObject.Parse(jsonContentAC); // Convertir JSON a JObject
+
+                _eNCFGlobalAC = jsonObjAC["ACECF"]["DetalleAprobacionComercial"]["eNCF"]?.ToString();
+                _RNCEmisorGlobalAC = jsonObjAC["ACECF"]["DetalleAprobacionComercial"]["RNCEmisor"]?.ToString();
+
+                XmlDocument xmlDocumentAC = JsonConvert.DeserializeXmlNode(jsonContentAC);
+
+                // Agregar la declaración XML estándar
+                XmlDeclaration xmlDeclarationAC = xmlDocumentAC.CreateXmlDeclaration("1.0", "utf-8", null);
+                XmlElement rootAC = xmlDocumentAC.DocumentElement;
+                xmlDocumentAC.InsertBefore(xmlDeclarationAC, rootAC);
+
+                // Guardar el XML en un archivo con la declaración XML
+                using (XmlWriter writer = XmlWriter.Create(filePathAC, new XmlWriterSettings { Indent = true, Encoding = System.Text.Encoding.UTF8 }))
+                {
+                    xmlDocumentAC.WriteTo(writer);
+                }
+
+                await FirmarAprobacionComercial(passCert);
+
+                ////////////////////////////////////////////////////Leer el archivo de Aprobacion Comercial JSON a XML///////////////////////////////////////////////////////////////////////////
 
                 using (HttpClient client = new HttpClient())
                 {
@@ -520,7 +536,7 @@ namespace ConexionDGII
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
+                Console.WriteLine($" Error: {ex.Message}");
 
             }
         }
@@ -561,13 +577,16 @@ namespace ConexionDGII
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
-                return $"❌ Error: {ex.Message}"; // Retorna el error
+                Console.WriteLine($" Error: {ex.Message}");
+                return $" Error: {ex.Message}"; // Retorna el error
 
             }
         }
 
     }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     public class Prueba
     {
@@ -610,9 +629,9 @@ namespace ConexionDGII
                     Console.WriteLine(xmlContent);
                     Console.WriteLine($"XML guardado en: {filePath}");
 
-                    // ✅ Llamar al método y recibir el JSON
+                    // Llamar al método y recibir el JSON
                     string rutaSemillaFirmada = await FirmarSemilla(passCert);
-                    return rutaSemillaFirmada; // ✅ Devolver el JSON recibido
+                    return rutaSemillaFirmada; // Devolver el JSON recibido
                 }
                 else
                 {
@@ -709,13 +728,13 @@ namespace ConexionDGII
 
                 //return rutaFacturaFirmada; 
 
-                return jsonContent; // ✅ Devolver el JSON recibido
+                return jsonContent; // Devolver el JSON recibido
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                return $"Error: {ex.Message}"; // ✅ Devuelve error como string
+                return $"Error: {ex.Message}"; // Devuelve error como string
 
             }
         }
@@ -753,7 +772,7 @@ namespace ConexionDGII
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                return $"Error: {ex.Message}"; // ✅ Devuelve error como string
+                return $"Error: {ex.Message}"; // Devuelve error como string
             }
         }
 
@@ -790,7 +809,7 @@ namespace ConexionDGII
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                return $"Error: {ex.Message}"; // ✅ Devuelve error como string
+                return $"Error: {ex.Message}"; // Devuelve error como string
             }
         }
 
@@ -940,24 +959,24 @@ namespace ConexionDGII
                             var json = JObject.Parse(responseBody);
                             _tokenGlobal = json["token"]?.ToString();
 
-                            // ✅ Llamar al método y recibir el JSON
+                            // Llamar al método y recibir el JSON
                             string JsonFinal = await EnviarFacturaElectronica(urlRecepcionFactura, urlConsultaFactura);
-                            return JsonFinal; // ✅ Devolver el JSON recibido
+                            return JsonFinal; // Devolver el JSON recibido
 
                         }
                         else
                         {
                             Console.WriteLine(response.StatusCode);
                             Console.WriteLine(responseBody);
-                            return $"Error: {response.StatusCode} - {responseBody}"; // ✅ Devuelve error
+                            return $"Error: {response.StatusCode} - {responseBody}"; // Devuelve error
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
-                return $"❌ Error: {ex.Message}"; // ✅ Devuelve error como string
+                Console.WriteLine($" Error: {ex.Message}");
+                return $" Error: {ex.Message}"; // Devuelve error como string
 
             }
         }
@@ -997,9 +1016,9 @@ namespace ConexionDGII
                             var json = JObject.Parse(responseBody);
                             _trackIdGlobal = json["trackId"]?.ToString();
 
-                            // ✅ Llamar al método y recibir el JSON
+                            // Llamar al método y recibir el JSON
                             string estadoFacturaJson = await ConsultarEstadoFacturaElectronica(urlConsultaFactura);
-                            return estadoFacturaJson; // ✅ Devolver el JSON recibido
+                            return estadoFacturaJson; // Devolver el JSON recibido
 
                         }
                         else
@@ -1007,7 +1026,7 @@ namespace ConexionDGII
                             Console.WriteLine(response.StatusCode);
                             Console.WriteLine(responseBody);
 
-                            return $"Error: {response.StatusCode} - {responseBody}"; // ✅ Devuelve error
+                            return $"Error: {response.StatusCode} - {responseBody}"; // Devuelve error
 
                         }
                     }
@@ -1015,8 +1034,8 @@ namespace ConexionDGII
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
-                return $"❌ Error: {ex.Message}"; // ✅ Devuelve error como string
+                Console.WriteLine($" Error: {ex.Message}");
+                return $" Error: {ex.Message}"; // Devuelve error como string
 
             }
         }
@@ -1066,7 +1085,7 @@ namespace ConexionDGII
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
+                Console.WriteLine($" Error: {ex.Message}");
 
             }
         }
@@ -1107,29 +1126,14 @@ namespace ConexionDGII
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error: {ex.Message}");
-                return $"❌ Error: {ex.Message}"; // Retorna el error
+                Console.WriteLine($" Error: {ex.Message}");
+                return $" Error: {ex.Message}"; // Retorna el error
 
             }
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*                   PRUEBAS PARA CONEXION A LAS APIS DE DYNAMICS 365 FINANCE AND OPERATIONS                 */
+        //                   PRUEBAS PARA CONEXION A LAS APIS DE DYNAMICS 365 FINANCE AND OPERATIONS                
 
         private static async Task<string> ObtenerToken()
         {
@@ -1238,5 +1242,6 @@ namespace ConexionDGII
         }
 
     }
+    
 
 }
