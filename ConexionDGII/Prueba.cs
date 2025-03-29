@@ -31,6 +31,7 @@ namespace ConexionDGII
         private static string _XMLSemillaFirmada;
         private static string _XMLFactura;
         private static string _XMLFacturaFirmada;
+        private static string _CodigoSeguridad;
 
 
         public static string EnviarTokenSincrona(string urlSemilla, string passCert, string jsonInvoice)
@@ -70,7 +71,8 @@ namespace ConexionDGII
                         xmlsemillafirmada = _XMLSemillaFirmada,
                         token = _tokenGlobal, 
                         xmlfactura = _XMLFactura,
-                        xmlfacturafirmada = _XMLFacturaFirmada
+                        xmlfacturafirmada = _XMLFacturaFirmada,
+                        codigoseguridad = _CodigoSeguridad
                     };
 
                     string jsonString = JsonConvert.SerializeObject(resultado);
@@ -177,7 +179,7 @@ namespace ConexionDGII
                 //SignXmlRepo(xmlDoc, pathCert, passCert);
 
 
-                SignXmlDISCORD(xmlDoc, pathCert, passCert);
+                SignXmlInvoice(xmlDoc, pathCert, passCert);
 
 
                 // Guardar el XML firmado
@@ -234,6 +236,72 @@ namespace ConexionDGII
             }
         }
 
+        static XmlDocument SignXmlInvoice(XmlDocument xmlDoc, string pathCert, string passCert)
+        {
+            if (!File.Exists(pathCert))
+                throw new FileNotFoundException("El certificado para firma no existe", pathCert);
+
+            var cert = new X509Certificate2(pathCert, passCert, X509KeyStorageFlags.Exportable);
+
+            if (cert.PrivateKey == null)
+                throw new Exception("El certificado no contiene una clave privada.");
+
+            var key = cert.GetRSAPrivateKey();
+
+            if (key == null)
+                throw new Exception("No se pudo obtener la clave privada RSA del certificado.");
+
+            var signedXml = new SignedXml(xmlDoc)
+            {
+                SigningKey = key
+            };
+
+            signedXml.SignedInfo.SignatureMethod = SignedXml.XmlDsigRSASHA256Url;
+
+            var reference = new Reference
+            {
+                Uri = "",
+                DigestMethod = "http://www.w3.org/2001/04/xmlenc#sha256"
+            };
+
+            reference.AddTransform(new XmlDsigEnvelopedSignatureTransform());
+            signedXml.AddReference(reference);
+
+            var keyInfo = new KeyInfo();
+            keyInfo.AddClause(new KeyInfoX509Data(cert));
+            signedXml.KeyInfo = keyInfo;
+
+            signedXml.ComputeSignature();
+
+            XmlElement xmlFirmaDigital = signedXml.GetXml();
+            xmlDoc.DocumentElement.AppendChild(xmlDoc.ImportNode(xmlFirmaDigital, true));
+
+            // Genera el hash SHA-256 de la firma digital en formato XML
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] firmaBytes = Encoding.UTF8.GetBytes(xmlFirmaDigital.OuterXml);
+                byte[] hashBytes = sha256.ComputeHash(firmaBytes);
+
+                // Convierte el hash a una cadena hexadecimal
+                string hashHex = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+
+                // Extrae los primeros 6 caracteres del hash
+                string codigoSeguridad = hashHex.Substring(0, 6);
+
+                _CodigoSeguridad = codigoSeguridad;
+
+                // Modifica el nodo <CodigoSeguridadeCF> en el XML
+                XmlNode nodoCodigoSeguridad = xmlDoc.SelectSingleNode("//CodigoSeguridadeCF");
+                if (nodoCodigoSeguridad != null)
+                {
+                    nodoCodigoSeguridad.InnerText = codigoSeguridad;
+                }
+                //this.codigoSeguridad = codigoSeguridad;
+            }
+
+            return xmlDoc;
+        }
+
 
         static XmlDocument SignXmlDISCORD(XmlDocument xmlDoc, string pathCert, string passCert)
         {
@@ -288,12 +356,10 @@ namespace ConexionDGII
                 string codigoSeguridad = hashHex.Substring(0, 6);
 
                 // Modifica el nodo <CodigoSeguridadeCF> en el XML
-
                 XmlNode nodoCodigoSeguridad = xmlDoc.SelectSingleNode("//CodigoSeguridadeCF");
                 if (nodoCodigoSeguridad != null)
                 {
                     nodoCodigoSeguridad.InnerText = codigoSeguridad;
-
                 }
                 //this.codigoSeguridad = codigoSeguridad;
             }
