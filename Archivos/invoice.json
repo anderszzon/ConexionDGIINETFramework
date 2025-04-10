@@ -51,86 +51,16 @@
 		"DetallesItems": {
 			"Item": [
 				{
-					"NumeroLinea": "1",
-					"IndicadorFacturacion": "1",
-					"NombreItem": "ASW DTU",
-					"IndicadorBienoServicio": "1",
-					"CantidadItem": "15.00",
-					"UnidadMedida": "31",
-					"PrecioUnitarioItem": "400.00",
-					"MontoItem": "6000.00"
-				},
-				{
-					"NumeroLinea": "2",
-					"IndicadorFacturacion": "1",
-					"NombreItem": "A",
-					"IndicadorBienoServicio": "1",
-					"CantidadItem": "15.00",
-					"UnidadMedida": "31",
-					"PrecioUnitarioItem": "400.00",
-					"MontoItem": "6000.00"
-				},
-				{
-					"NumeroLinea": "3",
-					"IndicadorFacturacion": "1",
-					"NombreItem": "B",
-					"IndicadorBienoServicio": "1",
-					"CantidadItem": "15.00",
-					"UnidadMedida": "31",
-					"PrecioUnitarioItem": "400.00",
-					"MontoItem": "6000.00"
-				},
-				{
-					"NumeroLinea": "4",
-					"IndicadorFacturacion": "1",
-					"NombreItem": "C",
-					"IndicadorBienoServicio": "1",
-					"CantidadItem": "15.00",
-					"UnidadMedida": "31",
-					"PrecioUnitarioItem": "400.00",
-					"MontoItem": "6000.00"
-				},
-				{
-					"NumeroLinea": "5",
-					"IndicadorFacturacion": "1",
-					"NombreItem": "D",
-					"IndicadorBienoServicio": "1",
-					"CantidadItem": "15.00",
-					"UnidadMedida": "31",
-					"PrecioUnitarioItem": "400.00",
-					"MontoItem": "6000.00"
-				},
-				{
-					"NumeroLinea": "6",
-					"IndicadorFacturacion": "1",
-					"NombreItem": "E",
-					"IndicadorBienoServicio": "1",
-					"CantidadItem": "15.00",
-					"UnidadMedida": "31",
-					"PrecioUnitarioItem": "400.00",
-					"MontoItem": "6000.00"
-				},
-				{
-					"NumeroLinea": "7",
-					"IndicadorFacturacion": "1",
-					"NombreItem": "F",
-					"IndicadorBienoServicio": "1",
-					"CantidadItem": "15.00",
-					"UnidadMedida": "31",
-					"PrecioUnitarioItem": "400.00",
-					"MontoItem": "6000.00"
-				},
-				{
-					"NumeroLinea": "8",
-					"IndicadorFacturacion": "1",
-					"NombreItem": "G",
-					"IndicadorBienoServicio": "1",
-					"CantidadItem": "15.00",
-					"UnidadMedida": "31",
-					"PrecioUnitarioItem": "400.00",
-					"MontoItem": "6000.00"
+				"NumeroLinea": "1",
+				"IndicadorFacturacion": "1",
+				"NombreItem": "ASW DTU",
+				"IndicadorBienoServicio": "1",
+				"CantidadItem": "15.00",
+				"UnidadMedida": "31",
+				"PrecioUnitarioItem": "400.00",
+				"MontoItem": "6000.00"
 				}
-			]
+					]
 		},
 		"FechaHoraFirma": "01-03-2025 05:07:00"
 	}
