@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using System.Security.Cryptography.Xml;
 using Newtonsoft.Json;
 using System.Xml.Linq;
+using System.Data.SqlTypes;
 
 
 namespace ConexionDGII
@@ -187,6 +188,13 @@ namespace ConexionDGII
                 Console.WriteLine("XML firmado y guardado en: " + signedXmlPath);
 
                 string xmlFacturaFirmada = xmlDoc.OuterXml; // <-- Aquí obtienes el XML firmado en string
+
+                XmlDocument xmlDoc2 = new XmlDocument();
+                xmlDoc2.PreserveWhitespace = true; // importante para firmas digitales
+                xmlDoc2.LoadXml(xmlFacturaFirmada);
+
+                GetSignatureValueFromSignedXml(xmlDoc2);
+
                 _XMLFacturaFirmada = xmlFacturaFirmada;
 
                 return xmlFacturaFirmada; // Devuelve el JSON como string
@@ -196,6 +204,39 @@ namespace ConexionDGII
             {
                 Console.WriteLine("Error: " + ex.Message);
                 return $"Error: {ex.Message}"; // ✅ Devuelve error como string
+            }
+        }
+
+        public static string GetSignatureValueFromSignedXml(XmlDocument signedXmlDoc2)
+        {
+            XmlNamespaceManager nsManager = new XmlNamespaceManager(signedXmlDoc2.NameTable);
+            nsManager.AddNamespace("ds", "http://www.w3.org/2000/09/xmldsig#");
+
+            XmlNode signatureValueNode = signedXmlDoc2.SelectSingleNode("//ds:SignatureValue", nsManager);
+
+            if (signatureValueNode != null)
+            {
+                //_CodigoSeguridad = signatureValueNode.InnerText;
+                string fullSignatureValue = signatureValueNode.InnerText;
+
+                // Validar que el valor tenga al menos 6 caracteres
+                if (fullSignatureValue.Length >= 6)
+                {
+                    _CodigoSeguridad = fullSignatureValue.Substring(0, 6);
+                }
+                else
+                {
+                    throw new Exception("El valor de SignatureValue tiene menos de 6 caracteres.");
+                }
+
+                return _CodigoSeguridad;
+
+                //return signatureValueNode.InnerText = _CodigoSeguridad;
+
+            }
+            else
+            {
+                throw new Exception("El nodo SignatureValue no se encontró en el XML.");
             }
         }
 
@@ -275,29 +316,6 @@ namespace ConexionDGII
 
             XmlElement xmlFirmaDigital = signedXml.GetXml();
             xmlDoc.DocumentElement.AppendChild(xmlDoc.ImportNode(xmlFirmaDigital, true));
-
-            // Genera el hash SHA-256 de la firma digital en formato XML
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] firmaBytes = Encoding.UTF8.GetBytes(xmlFirmaDigital.OuterXml);
-                byte[] hashBytes = sha256.ComputeHash(firmaBytes);
-
-                // Convierte el hash a una cadena hexadecimal
-                string hashHex = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
-
-                // Extrae los primeros 6 caracteres del hash
-                string codigoSeguridad = hashHex.Substring(0, 6);
-
-                _CodigoSeguridad = codigoSeguridad;
-
-                // Modifica el nodo <CodigoSeguridadeCF> en el XML
-                XmlNode nodoCodigoSeguridad = xmlDoc.SelectSingleNode("//CodigoSeguridadeCF");
-                if (nodoCodigoSeguridad != null)
-                {
-                    nodoCodigoSeguridad.InnerText = codigoSeguridad;
-                }
-                //this.codigoSeguridad = codigoSeguridad;
-            }
 
             return xmlDoc;
         }
